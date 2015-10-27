@@ -18,11 +18,15 @@ $context = stream_context_create(
 
 
 $query_string = $_SERVER["QUERY_STRING"];
+$script_filename = $_SERVER["SCRIPT_FILENAME"]; 
+$path_info = $_SERVER["PATH_INFO"]; 
+$request_uri = $_SERVER["REQUEST_URI"];
 
 // var_dump($query_string);
 
 echo file_get_contents(
-    'http://localhost?' . $query_string, false, $context
+    // 'http://localhost?' . $query_string, false, $context
+    'http://localhost:3000' . $request_uri, false, $context
 );
 
 

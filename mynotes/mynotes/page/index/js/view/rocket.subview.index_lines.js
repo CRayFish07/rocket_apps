@@ -75,11 +75,11 @@ rocket.subview.index_lines = rocket.subview.uibase_vimlikelist.extend({
         firstLineNo = $lines.first().find('.line-number').text();
         lastLineNo = $lines.last().find('.line-number').text();
 
-        if(data[0].article_id - 0 < firstLineNo - 0){
+        if(data[0].note_id - 0 < firstLineNo - 0){
             return 'PREPEND';
         }
 
-        if(data[0].article_id - 0 > lastLineNo - 0){
+        if(data[0].note_id - 0 > lastLineNo - 0){
             return 'APPEND';
         }
     }

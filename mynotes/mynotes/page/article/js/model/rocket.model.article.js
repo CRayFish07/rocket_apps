@@ -15,9 +15,10 @@ rocket.model.article = rocket.model.extend({
     }
 
     ,urlTemplate: _.template([
-        '/?tn=notes&act=getNotesWithArticleID'
-        ,'article_id=<%= article_id %>'
-        ,'context_num=<%= context_num %>'
+        // '/?tn=notes&act=getNotesWithArticleID'
+        // ,'article_id=<%= article_id %>'
+        // ,'context_num=<%= context_num %>'
+        '/note/<%= article_id %>'
     ].join('&'))
 
     ,url: function(){

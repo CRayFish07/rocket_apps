@@ -1051,9 +1051,10 @@ rocket.model.article_list = rocket.model.extend({
     }
 
     ,urlTemplate: _.template([
-        '/?tn=notes&act=getArticleAbstracts'
-        ,'from_article_id=<%= from_article_id %>'
-        ,'context_num=<%= context_num %>'
+        // '/?tn=notes&act=getArticleAbstracts'
+        // ,'from_article_id=<%= from_article_id %>'
+        // ,'context_num=<%= context_num %>'
+        '/notes/<%= from_article_id %>/<%= context_num %>'
     ].join('&'))
 
     ,url: function(){
