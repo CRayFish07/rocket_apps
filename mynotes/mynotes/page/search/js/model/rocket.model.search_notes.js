@@ -16,12 +16,17 @@ rocket.model.search_notes = rocket.model.extend({
     }
 
     ,urlTemplate: _.template([
-        '/?tn=notes&act=searchNotes'
-        ,'key_words=<%= encodeURIComponent(key_words) %>'
-        ,'context_num=<%= context_num %>'
-        ,'from=<%= from %>'
-        ,'count=<%= count %>'
-    ].join('&'))
+        // '/?tn=notes&act=searchNotes'
+        // ,'key_words=<%= encodeURIComponent(key_words) %>'
+        // ,'context_num=<%= context_num %>'
+        // ,'from=<%= from %>'
+        // ,'count=<%= count %>'
+        '/notesearch'
+        , '<%= encodeURIComponent(key_words) %>'
+        , '<%= context_num %>'
+        , '<%= from %>'
+        , '<%= count %>'
+    ].join('/'))
 
     ,url: function(){
         var me = this;

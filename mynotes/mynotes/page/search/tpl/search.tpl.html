@@ -2,14 +2,14 @@
 
 <% var last = 0; %>                                  
 <% for(var i=0; i<lines.length; i++){ %>
-    <% if(lines[i].line_num - last > 1){ %>
+    <% if(lines[i].lineno - last > 1){ %>
         <% if(last != 0){ %>
         </div>
         <% } %>
     <div class="line">
     <% } %>
-<div class="inner-line"><div class="inner-line-number"><%=lines[i].line_num%></div><p><%= lines[i].text %></p></div>  
-    <% last = lines[i].line_num; %>
+<div class="inner-line"><div class="inner-line-number"><%=lines[i].lineno%></div><p><%= lines[i].text %></p></div>  
+    <% last = lines[i].lineno; %>
 <% } %>
 
 <% if(lines.length > 0){ %>
