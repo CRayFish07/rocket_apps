@@ -1,7 +1,7 @@
 (function($){
 
 rocket.subpageview.article_lines 
-    = rocket.subpageview.uibase_vimlikelist.extend({
+    = rocket.subpageview.uibase_vimlikepage.extend({
 
     className: 'article-page-lines'
 
@@ -23,8 +23,6 @@ rocket.subpageview.article_lines
         me.isFirstLoad = true;
         // @note: request all lines of article
         me.contextNum = 0;
-
-        me.$currentLine = null;
 
         me.showLoading(me.$el);
     }
@@ -53,68 +51,15 @@ rocket.subpageview.article_lines
         var me = this,
             data = model.getData();
 
-        switch(me.getRenderMode(model)){
-            case 'APPEND':
-                var str = me.lineTemplate({
-                            lines: data[1]
-                        });
-                console.log(str);
-                console.log(
-                    markdown.toHTML(str)
-                );
-                me.$el.append(
-                    markdown.toHTML(str)
-                );
-                break;
-            case 'PREPEND':
-                me.$el.prepend(
-                    markdown.toHTML(
-                        me.lineTemplate({
-                            articles: data 
-                        })
-                    )
-                );
-                break;
-        }
+        me.$el.append(
+            markdown.toHTML(
+                me.lineTemplate({
+                    lines: data[1]
+                })
+            )
+        );
 
-        if(me.isFirstLoad){
-            me.ec.trigger('articleinfochange', {
-                info: data[0]
-            });
-            me.isFirstLoad = false;
-            me.hideLoading();
-
-            if(me.initialLine){
-                me.highlightLine(me.initialLine);
-                me.scrollIntoView();
-            }
-            else{
-                me.highlightFirstLine();
-            }
-        }
-    }
-
-    ,getRenderMode: function(model){
-        var me = this,
-            data = model.getData(),
-            $lines = me.$('.line'),
-            firstLineNo,
-            lastLineNo;
-
-        if(!$lines.length){
-            return 'APPEND';
-        } 
-
-        firstLineNo = $lines.first().find('.line-number').text();
-        lastLineNo = $lines.last().find('.line-number').text();
-
-        if(data[0].article_id - 0 < firstLineNo - 0){
-            return 'PREPEND';
-        }
-
-        if(data[0].article_id - 0 > lastLineNo - 0){
-            return 'APPEND';
-        }
+        me.hideLoading();
     }
 
     ,onmodelchange: function(model, xhr){
@@ -134,12 +79,7 @@ rocket.subpageview.article_lines
             && featureString == me.featureString){     
                                                        
             if(me.isFirstLoad){                        
-                me.model.fetch({
-                    reqdata: {
-                        from_article_id: 1
-                        ,context_num: me.contextNum
-                    }
-                });
+                me.model.fetch({});
             }
           
             // @note: 平滑子页面，显示不隐藏
@@ -147,7 +87,6 @@ rocket.subpageview.article_lines
         }
   
     }
-
 
     ,onkeydown: function(params){
         var me = this,

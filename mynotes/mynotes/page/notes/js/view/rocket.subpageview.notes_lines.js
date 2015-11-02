@@ -19,7 +19,7 @@ rocket.subpageview.notes_lines
 
         me.keywords = options.keywords;
         me.fromLineNo = options.line;
-        me.contextNum = 9;
+        me.contextNum = 25;
 
         me.$currentLine = null;
 

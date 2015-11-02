@@ -49,12 +49,14 @@
 
 #index_page_header_searchbox{
     /*绝对定位*/
+    /*
     position:absolute;
 
     top:0;
     right:0;
     bottom:0;
     width:260px;
+    */
 }
 
 #index_page_lines{

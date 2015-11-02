@@ -14,6 +14,10 @@ fis.config.merge({
                 release : "/static$&"
             },
             {
+                reg : /^\/.*bootstrap(-theme)?\.min\.css$/i,
+                release : "/static$&"
+            },
+            {
                 reg : /^\/.+\.(png|gif|jpg|jpeg)$/i,
                 release : "/static$&"
             },

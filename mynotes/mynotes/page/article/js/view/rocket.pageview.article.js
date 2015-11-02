@@ -9,10 +9,12 @@ rocket.pageview.article = rocket.pageview.extend({
             spm,
             subView;
 
+        /*
         me.setup(new rocket.subview.article_header(
             $.extend({}, me.options)
             ,me
         ));
+        */
 
         spm = me.getSubpageManager({
             subpageClass: rocket.subpageview.article_lines

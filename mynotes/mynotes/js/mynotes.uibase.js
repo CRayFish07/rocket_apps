@@ -5,6 +5,48 @@ var mynotes = window.mynotes = window.mynotes || {},
         = mynotes.uibase || {};
 
 
+uibase.vimlikepage = {
+
+    configDownStep: 50
+
+    , goDown: function() {
+        var me = this; 
+        me.el.scrollTop += me.configDownStep;
+    }
+
+    , goUp: function() {
+        var me = this; 
+        me.el.scrollTop -= me.configDownStep;
+    }
+
+    , goNextFrame: function() {
+        var me = this; 
+        me.el.scrollTop += me.$el.height()
+            - parseInt( me.$el.css('padding-top') )
+            - parseInt( me.$el.css('padding-bottom') )
+            ;
+    }
+
+    , goPrevFrame: function() {
+        var me = this; 
+        me.el.scrollTop -= me.$el.height()
+            - parseInt( me.$el.css('padding-top') )
+            - parseInt( me.$el.css('padding-bottom') )
+            ;
+    }
+
+    , goFirst: function() {
+        this.el.scrollTop = 0;
+    }
+
+    , goLast: function() {
+        var me = this; 
+        me.el.scrollTop = me.el.scrollHeight;
+    }
+
+};
+
+
 uibase.vimlikelist = {
 
     $currentLine: null

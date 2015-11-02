@@ -1,11 +1,19 @@
 <div id="search_page">
-    <div id="search_page_header">
-        <div id="search_page_header_tag">Search Results</div>
-        <div id="search_page_header_pager">
-            <input class="current" value="22">
-            <span>/ 23</span>
-        </div>
-        <div id="search_page_header_searchbox"></div>
+    <div id="index_page_header container">
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="">Search Results</a>
+                </div>
+
+                <form id="search_page_header_pager" class="navbar-form navbar-left form-inline">
+                    <input class="current form-control" value="22" disabled>
+                    <span class="form-control" disabled>/ 23</span>
+                </form>
+
+                <div id="search_page_header_searchbox" class="navbar-right"></div>
+            </div>
+        </nav>
     </div>
     <div id="search_page_lines"></div>
 </div>
