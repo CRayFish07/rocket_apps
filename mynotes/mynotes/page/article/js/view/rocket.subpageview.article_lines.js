@@ -18,6 +18,8 @@ rocket.subpageview.article_lines
             ,$.extend({}, me.options)
         );
 
+        me.$el.addClass('markdown-body');
+
         me.isFirstLoad = true;
         // @note: request all lines of article
         me.contextNum = 0;
@@ -53,17 +55,24 @@ rocket.subpageview.article_lines
 
         switch(me.getRenderMode(model)){
             case 'APPEND':
+                var str = me.lineTemplate({
+                            lines: data[1]
+                        });
+                console.log(str);
+                console.log(
+                    markdown.toHTML(str)
+                );
                 me.$el.append(
-                    me.lineTemplate({
-                        lines: data[1]
-                    })
+                    markdown.toHTML(str)
                 );
                 break;
             case 'PREPEND':
                 me.$el.prepend(
-                    me.lineTemplate({
-                        articles: data 
-                    })
+                    markdown.toHTML(
+                        me.lineTemplate({
+                            articles: data 
+                        })
+                    )
                 );
                 break;
         }

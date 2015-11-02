@@ -10,6 +10,10 @@ fis.config.merge({
                 release : "/static$&"
             },
             {
+                reg : /^\/.*markdown\.js$/i,
+                release : "/static$&"
+            },
+            {
                 reg : /^\/.+\.(png|gif|jpg|jpeg)$/i,
                 release : "/static$&"
             },
