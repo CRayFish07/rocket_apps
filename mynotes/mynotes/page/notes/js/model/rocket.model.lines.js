@@ -15,11 +15,15 @@ rocket.model.lines = rocket.model.extend({
     }
 
     ,urlTemplate: _.template([
-        '/?tn=notes&act=getNotesWithLineNo'
-        ,'line=<%= line %>'
-        ,'context_num=<%= context_num %>'
-        ,'direction=<%= direction %>'
-    ].join('&'))
+        // '/?tn=notes&act=getNotesWithLineNo'
+        // ,'line=<%= line %>'
+        // ,'context_num=<%= context_num %>'
+        // ,'direction=<%= direction %>'
+        '/notelines'
+        ,'<%= line %>'
+        ,'<%= context_num %>'
+        ,'<%= direction %>'
+    ].join('/'))
 
     ,url: function(){
         var me = this;

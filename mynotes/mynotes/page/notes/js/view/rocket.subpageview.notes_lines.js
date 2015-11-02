@@ -91,11 +91,11 @@ rocket.subpageview.notes_lines
         firstLineNo = $lines.first().find('.line-number').text();
         lastLineNo = $lines.last().find('.line-number').text();
 
-        if(data[0].line_num - 0 < firstLineNo - 0){
+        if(data[0].lineno - 0 < firstLineNo - 0){
             return 'PREPEND';
         }
 
-        if(data[0].line_num - 0 > lastLineNo - 0){
+        if(data[0].lineno - 0 > lastLineNo - 0){
             return 'APPEND';
         }
     }
@@ -222,7 +222,7 @@ rocket.subpageview.notes_lines
 
         me.model.fetch({
             reqdata: {
-                line: lineID - me.contextNum - 1 
+                line: lineID - 1 
                 ,context_num: me.contextNum
                 ,direction: -1
             }
