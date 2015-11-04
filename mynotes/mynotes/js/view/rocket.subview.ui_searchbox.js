@@ -36,6 +36,8 @@ rocket.subview.ui_searchbox = rocket.subview.extend({
             // @note: 让键盘关闭
             me.$keyword.blur();
 
+            ec.trigger('commitsearch');
+
             me.doSearch();
         });
 
@@ -104,7 +106,12 @@ rocket.subview.ui_searchbox = rocket.subview.extend({
 
     ,onstartsearch: function(){
         var me = this;
-        me.$keyword.focus();
+
+        me.$keyword.val('');
+        setTimeout(function(){
+            me.$keyword.focus();
+        }, 200);
+
     }
 });
 

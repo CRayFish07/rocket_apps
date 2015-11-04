@@ -7,10 +7,12 @@ rocket.subview.search_header = rocket.subview.extend({
     ,init: function(options){
         var me = this;
 
+        /*
         me.appendTo(new rocket.subview.ui_searchbox(
             $.extend({}, options)
             ,me
         ), '#search_page_header_searchbox');
+        */
 
         me.append(new rocket.subview.search_header_pager(
             $.extend({}, options)

@@ -66,6 +66,7 @@ rocket.subpageview.article_lines
         var me = this; 
 
         me.render(model);
+        me.ec.trigger('articleinfochange', { info: model.toJSON() } );
     }
 
     ,onsubpagebeforechange: function(params){          

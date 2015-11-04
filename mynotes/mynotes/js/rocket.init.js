@@ -9,7 +9,11 @@ $.extend(rocket, {
         // 全局model
         // var modelvstuiguang = new rocket.model.vstuiguang();
 
-        new rocket.router.mynotes();
+        var router = new rocket.router.mynotes();
+
+        // globalviews
+        new rocket.globalview.searchbox({}, router);
+
         Backbone.history.start();
 
         function scroll(e){

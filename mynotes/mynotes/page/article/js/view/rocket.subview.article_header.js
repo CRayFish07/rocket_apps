@@ -23,7 +23,7 @@ rocket.subview.article_header = rocket.subview.extend({
 
         me.$el.html(
             me.infoTemplate({
-                info: data
+                info: data[0]
             })
         );
     }

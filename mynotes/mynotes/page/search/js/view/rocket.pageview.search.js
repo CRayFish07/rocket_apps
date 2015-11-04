@@ -16,7 +16,8 @@ rocket.pageview.search = rocket.pageview.extend({
 
         spm = me.getSubpageManager({
             subpageClass: rocket.subpageview.search_lines
-            ,maxSubpages: 2
+            , maxSubpages: 2
+            , subpageTransition: 'simple'
         });
 
         subView = new rocket.subpageview.search_lines(

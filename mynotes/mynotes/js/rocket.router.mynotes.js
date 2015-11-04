@@ -34,7 +34,7 @@ rocket.router.mynotes = rocket.router.extend({
     ,enablePositionRestore: true
 
     // 默认页面切换动画
-    ,defaultPageTransition: 'slide'
+    ,defaultPageTransition: 'simple'
 
     // 页面切换动画配置
     ,pageTransition: {

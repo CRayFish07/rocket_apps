@@ -16,7 +16,8 @@ rocket.pageview.notes = rocket.pageview.extend({
 
         spm = me.getSubpageManager({
             subpageClass: rocket.subpageview.notes_lines
-            ,maxSubpages: 2
+            , maxSubpages: 2
+            , subpageTransition: 'simple'
         });
 
         subView = new rocket.subpageview.notes_lines(
