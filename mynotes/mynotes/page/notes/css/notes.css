@@ -19,6 +19,7 @@
     */
 
     overflow:auto; 
+    background-color:#000;
 }
 
 #notes_page_header{
@@ -44,7 +45,7 @@
 
     margin-left:20px;
     text-align:left;
-    font:bold 20px/40px Arial;
+    font:bold 20px/40px Tahoma,Arial;
 }
 
 #notes_page_header_searchbox{
@@ -79,8 +80,8 @@
 
 .notes-page-lines div.line {
     clear:both; 
-    min-height:40px; 
-    _height:40px;
+    min-height:20px; 
+    _height:20px;
 }
 
 .notes-page-lines div.line-number{
@@ -89,18 +90,19 @@
     overflow:hidden;
     cursor:pointer;
 
-    color:#999; 
+    color:#555; 
     text-align:center;
-    font:italic 12px/40px Arial;
+    font:italic 12px/20px Arial;
 }
 
 .notes-page-lines div.line p{
-    min-height:40px; 
-    _height:40px;
+    min-height:20px; 
+    _height:20px;
     padding-left:40px; 
     margin-bottom:0;
 
-    font:normal 16px/40px Arial;
+    font:normal 14px/20px monospace;
+    color: #888;
 }
 
 .notes-page-lines div.current-line p{

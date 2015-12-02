@@ -7,7 +7,7 @@ rocket.model.lines = rocket.model.extend({
 
         me.requestData = {
             'line': 1
-            ,'context_num': 25
+            ,'context_num': 30
             ,'direction': 1
         };
 

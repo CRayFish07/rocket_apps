@@ -44,7 +44,7 @@
 
     margin-left:20px;
     text-align:left;
-    font:bold 20px/40px Arial;
+    font:bold 20px/40px Tahoma,Arial;
 }
 
 #index_page_header_searchbox{
@@ -81,8 +81,8 @@
 
 #index_page_lines div.line {
     clear:both; 
-    min-height:40px; 
-    _height:40px;
+    min-height:30px; 
+    _height:30px;
 }
 
 #index_page_lines div.line-number{
@@ -93,15 +93,15 @@
 
     color:#999; 
     text-align:center;
-    font:italic 12px/40px Arial;
+    font:italic 12px/30px Arial;
 }
 
 #index_page_lines div.line p{
-    min-height:40px; 
-    _height:40px;
+    min-height:30px; 
+    _height:30px;
     padding-left:40px; 
 
-    font:normal 16px/40px Arial;
+    font:normal 16px/30px Tahoma,Arial;
 }
 
 #index_page_lines div.current-line p{

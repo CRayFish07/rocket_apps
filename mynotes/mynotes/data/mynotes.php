@@ -26,7 +26,7 @@ $request_uri = $_SERVER["REQUEST_URI"];
 
 echo file_get_contents(
     // 'http://localhost?' . $query_string, false, $context
-    'http://localhost:3000' . $request_uri, false, $context
+    'http://localhost:3100' . $request_uri, false, $context
 );
 
 

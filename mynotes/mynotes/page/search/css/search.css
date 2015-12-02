@@ -44,7 +44,7 @@
 
     margin-left:20px;
     text-align:left;
-    font:bold 20px/40px Arial;
+    font:bold 20px/40px Tahoma,Arial;
 }
 
 #search_page_header_pager{
@@ -128,7 +128,7 @@
     padding-left:20px; 
     border-left:3px solid #4285F4;
     color:#fff;
-    font:normal 14px/24px Arial;
+    font:normal 14px/24px Tahoma,Arial;
 }
 
 .search-page-lines div.inner-line p{

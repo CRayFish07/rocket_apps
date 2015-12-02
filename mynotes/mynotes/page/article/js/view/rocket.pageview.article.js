@@ -39,6 +39,8 @@ rocket.pageview.article = rocket.pageview.extend({
         $(document).on('keydown', function(e){
             // @note: only response in active page
             if(ec.isActivePage()
+                // @note: omit form keydown
+                && $(e.target).closest('form').length == 0
                 && !keydownLocking){
                 keydownLocking = true;
 
