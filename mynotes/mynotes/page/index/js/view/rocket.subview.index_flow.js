@@ -137,7 +137,6 @@ rocket.subview.index_flow = rocket.subview.extend({
         else {
             reg = '[\\s\\S]*';
         }
-        console.log(reg);
         return new RegExp(reg, 'gi');
     }
 

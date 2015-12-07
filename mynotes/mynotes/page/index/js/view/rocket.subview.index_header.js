@@ -7,10 +7,12 @@ rocket.subview.index_header = rocket.subview.extend({
     ,init: function(options){
         var me = this;
 
-        me.append(new rocket.subview.index_header_searchbox(
-            $.extend({}, options)
-            , me
-        ));
+        if(options.vimlike != 1){
+            me.append(new rocket.subview.index_header_searchbox(
+                $.extend({}, options)
+                , me
+            ));
+        }
     }
 
     ,registerEvents: function(){

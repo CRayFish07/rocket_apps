@@ -9,7 +9,7 @@ rocket.router.mynotes = rocket.router.extend({
          */
 
         '': 'index'
-        ,'index': 'index'
+        ,'index(/vimlike=:vimlike)': 'index'
         ,'article/:articleid(/:line)': 'article'
         ,'search/:keywords': 'search'
         ,'notes/:line(/:keywords)': 'notes'
@@ -49,8 +49,8 @@ rocket.router.mynotes = rocket.router.extend({
      * route handlers
      */
 
-    ,index: function() {
-        this.doAction('index', {});
+    ,index: function(vimlike) {
+        this.doAction('index', {vimlike: vimlike || 0});
     }
 
     ,article: function(articleid, line/*optional*/) {

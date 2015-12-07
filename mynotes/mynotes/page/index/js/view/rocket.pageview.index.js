@@ -12,10 +12,20 @@ rocket.pageview.index = rocket.pageview.extend({
             ,me
         ));
 
-        me.setup(new rocket.subview.index_flow(
-            $.extend({}, me.options)
-            ,me
-        ));
+        console.log(options);
+
+        if(options.vimlike == 1){
+            me.setup(new rocket.subview.index_lines(
+                $.extend({}, me.options)
+                ,me
+            ));
+        }
+        else{
+            me.setup(new rocket.subview.index_flow(
+                $.extend({}, me.options)
+                ,me
+            ));
+        }
     }
 
     ,registerEvents: function(){

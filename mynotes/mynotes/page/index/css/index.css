@@ -47,6 +47,7 @@
 
 #index_page_header_searchbox{
     /*绝对定位*/
+    display:none;
     position:absolute;
 
     top:0;
