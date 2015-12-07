@@ -1,16 +1,19 @@
 (function($){
 
-rocket.subview.index_header = rocket.subview.extend({
+rocket.subview.index_header_searchbox = rocket.subview.extend({
 
-    el: '#index_page_header'
+    el: '#index_page_header_searchbox'
 
     ,init: function(options){
         var me = this;
 
-        me.append(new rocket.subview.index_header_searchbox(
+        /*
+        me.appendTo(new rocket.subview.ui_searchbox(
             $.extend({}, options)
-            , me
-        ));
+            ,me
+        ), '#index_page_header_searchbox');
+        */
+        me.$input = me.$('input[type="text"]');
     }
 
     ,registerEvents: function(){
@@ -18,6 +21,14 @@ rocket.subview.index_header = rocket.subview.extend({
             ec = me.ec;
         
         ec.on('pagebeforechange', me.onpagebeforechange, me);
+
+        me.$input.on('keydown', function(e){
+            e.stopPropagation();
+        })
+        .on('input', function(e){
+            e.stopPropagation();
+            ec.trigger('input', {text: me.$input.val()});
+        });
     }
 
     ,render: function(model){

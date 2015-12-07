@@ -1,25 +1,36 @@
 (function($){
 
-rocket.subview.index_lines = rocket.subview.uibase_vimlikelist.extend({
+rocket.subview.index_flow = rocket.subview.extend({
 
-    el: '#index_page_lines'
+    el: '#index_page_flow'
 
-    ,lineTemplate: _.template($('#template_index_lines').text())
+    ,events: {
+        'click .flow-item': 'onclick'
+    }
+
+    ,lineTemplate: _.template($('#template_index_flow').text())
 
     ,init: function(options){
         var me = this;
 
+        me.contextNum = 99;
         me.model = new rocket.model.article_list(
             {}
-            ,$.extend({}, me.options)
+            ,$.extend(
+                {
+                    contextNum: me.contextNum
+                }
+                , me.options
+            )
         );
 
         me.isFirstLoad = true;
-        me.contextNum = 49;
 
         me.$currentLine = null;
 
         me.showLoading(me.$el);
+
+        me.scrollLock = 0;
     }
 
     ,registerEvents: function(){
@@ -31,58 +42,27 @@ rocket.subview.index_lines = rocket.subview.uibase_vimlikelist.extend({
         me.model.on('change', me.onmodelchange, me);
 
         ec.on('keydown', me.onkeydown, me);
-
         ec.on('input', me.oninput, me); 
+
+        me.registerScrollEvent();
     }
 
     ,render: function(model){
         var me = this,
             data = model.getData();
 
-        switch(me.getRenderMode(model)){
-            case 'APPEND':
-                me.$el.append(
-                    me.lineTemplate({
-                        articles: data 
-                    })
-                );
-                break;
-            case 'PREPEND':
-                me.$el.prepend(
-                    me.lineTemplate({
-                        articles: data 
-                    })
-                );
-                break;
-        }
+        me.$el.append(
+            me.lineTemplate({
+                articles: data 
+            })
+        );
+
+        me.scrollLock = 0;
 
         if(me.isFirstLoad){
             me.isFirstLoad = false;
             me.hideLoading();
-            me.highlightFirstLine();
-        }
-    }
-
-    ,getRenderMode: function(model){
-        var me = this,
-            data = model.getData(),
-            $lines = me.$('.line'),
-            firstLineNo,
-            lastLineNo;
-
-        if(!$lines.length){
-            return 'APPEND';
-        } 
-
-        firstLineNo = $lines.first().find('.line-number').text();
-        lastLineNo = $lines.last().find('.line-number').text();
-
-        if(data[0].note_id - 0 < firstLineNo - 0){
-            return 'PREPEND';
-        }
-
-        if(data[0].note_id - 0 > lastLineNo - 0){
-            return 'APPEND';
+            // me.highlightFirstLine();
         }
     }
 
@@ -112,8 +92,75 @@ rocket.subview.index_lines = rocket.subview.uibase_vimlikelist.extend({
         }
     }
 
+    ,registerScrollEvent: function(){
+
+        var me = this;
+
+        $(window).on('scroll', function(){
+
+            if (! me.ec.isActivePage()
+                || me.scrollLock 
+                || me.model.toEnd 
+                ){
+                return;
+            }
+
+            me.scrollLock = 1;
+
+            var body = document.body,
+                scrollTop = body.scrollTop,
+                scrollHeight = body.scrollHeight,
+                clientHeight = body.clientHeight;
+
+            if (scrollTop + clientHeight > scrollHeight - 100) {
+                me.getMoreNext();
+            }
+            else {
+                me.scrollLock = 0;
+            }
+
+            // console.log( scrollHeight, clientHeight, scrollTop); 
+        });
+
+    }
+
     ,oninput: function(params){
         console.log(params);
+        this.doFilter(params.text);
+    }
+
+    ,getRegExp: function(str){
+        var reg = str;
+        if(reg) {
+            reg = reg.replace(/[*?\[\]{}\\.|-]/g, '\\$&');
+        }
+        else {
+            reg = '[\\s\\S]*';
+        }
+        console.log(reg);
+        return new RegExp(reg, 'gi');
+    }
+
+    ,doFilter: function(filter){
+        var me = this,
+            reg = me.getRegExp(filter);;
+
+        me.$('.flow-item').each(function(index, item){
+            var $item = $(item);
+            if(reg.test($item.text())){
+                $item.show();
+                console.log('show: ', $item.text());
+            }
+            else {
+                $item.hide();
+                console.log('hide: ', $item.text());
+            }
+        });
+    }
+
+    ,onclick: function(e){
+        var $target = $(e.target).closest('.flow-item'); 
+        this.goArticle($target.data('note-id'));
     }
 
     ,onkeydown: function(params){
@@ -182,32 +229,13 @@ rocket.subview.index_lines = rocket.subview.uibase_vimlikelist.extend({
         }
     }
 
-
-
-    ,getMorePrev: function(){
-        var me = this,
-            $firstLine = me.$('.line').first(),
-            articleID = 0; // 1-based
-
-        if($firstLine.length){
-            articleID = $firstLine.find('.line-number').text();
-        }
-
-        me.model.fetch({
-            reqdata: {
-                from_article_id: articleID - me.contextNum - 1 
-                ,context_num: me.contextNum
-            }
-        });
-    }
-
     ,getMoreNext: function(){
         var me = this,
-            $lastLine = me.$('.line').last(),
+            $lastLine = me.$('.flow-item').last(),
             articleID = 0; // 1-based
 
         if($lastLine.length){
-            articleID = $lastLine.find('.line-number').text();
+            articleID = $lastLine.data('note-id');
         }
 
         me.model.fetch({
@@ -218,17 +246,14 @@ rocket.subview.index_lines = rocket.subview.uibase_vimlikelist.extend({
         });
     }
 
-    ,goArticle: function(){
+    ,goArticle: function(noteId){
         var me = this;
-        if(me.$currentLine){
-            setTimeout(function(){
-                me.navigate([
-                    '#article'
-                    ,'/'
-                    ,me.$currentLine.find('.line-number').text()
-                ].join(''));
-            }, 500);
-        }
+
+        me.navigate([
+            '#article'
+            ,'/'
+            ,noteId
+        ].join(''));
     }
 
     ,startSearch: function(){

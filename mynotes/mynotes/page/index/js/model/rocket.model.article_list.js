@@ -5,12 +5,16 @@ rocket.model.article_list = rocket.model.extend({
     initialize: function(attributes, options){
         var me = this;
 
+        me.contextNum = options.contextNum || 25;
+        me.toEnd = 0;
+
         me.requestData = {
             'from_article_id': 1
-            ,'context_num': 25
+            ,'context_num': me.contextNum
         };
 
         me.data = [];
+        me.allData = [];
     }
 
     ,urlTemplate: _.template([
@@ -27,6 +31,10 @@ rocket.model.article_list = rocket.model.extend({
 
     ,getData: function(){
         return this.data;
+    }
+
+    ,getAllData: function(){
+        return this.allData();
     }
 
     ,fetch: function(options){
@@ -48,6 +56,12 @@ rocket.model.article_list = rocket.model.extend({
 
     ,parse: function(resp, xhr){
         this.data = resp;
+        this.allData = this.allData.concat(resp);
+
+        if(this.data.length < this.contextNum){
+            this.toEnd = 1;
+        }
+
         return resp;
     }
 

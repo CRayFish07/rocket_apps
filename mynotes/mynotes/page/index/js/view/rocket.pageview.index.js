@@ -12,7 +12,7 @@ rocket.pageview.index = rocket.pageview.extend({
             ,me
         ));
 
-        me.setup(new rocket.subview.index_lines(
+        me.setup(new rocket.subview.index_flow(
             $.extend({}, me.options)
             ,me
         ));

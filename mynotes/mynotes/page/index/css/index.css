@@ -17,8 +17,6 @@
     -webkit-user-select:none;
     -moz-user-select:none;
     */
-
-    overflow:auto; 
 }
 
 #index_page_header{
@@ -49,17 +47,26 @@
 
 #index_page_header_searchbox{
     /*绝对定位*/
-    /*
     position:absolute;
 
     top:0;
     right:0;
     bottom:0;
     width:260px;
-    */
 }
 
+#index_page_header_searchbox input[type="text"] {
+    position: absolute;
+    padding-left: 5px;
+    width: 80%;
+    height: 60%;
+    top: 20%;
+    border-radius: 4px;
+}
+
+#index_page_flow,
 #index_page_lines{
+    display:none;
     /*绝对定位*/
     position:absolute;
 
@@ -67,8 +74,10 @@
     left:0;
     right:0;
     bottom:0;
+}
 
-    overflow:scroll;
+#index_page_lines {
+    overflow: auto;
 }
 
 #index_page_lines *{
@@ -111,3 +120,27 @@
 #index_page_lines div.current-line div.line-number{
     color:#fff;
 }
+
+
+
+#index_page_flow {
+    padding-top: 20px;
+}
+
+#index_page_flow div.flow-item{
+    float:left;
+    min-width:150px;
+    padding:4px 10px;
+    margin:5px 20px;
+    /*
+    background-color:#dff0d8;
+    */
+    border:1px solid #dff0d8;
+    border-radius:4px;
+    cursor:pointer;
+}
+
+#index_page_flow div.flow-item:hover{
+    background-color:#dff0d8;
+}
+

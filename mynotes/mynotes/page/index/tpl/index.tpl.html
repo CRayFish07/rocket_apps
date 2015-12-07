@@ -4,3 +4,8 @@
     <%}%>
 </script>
 
+<script type="text/html" id="template_index_flow">
+    <%for(var i in articles){%>
+        <div class="flow-item" data-note-id="<%=articles[i].note_id%>"><%- articles[i].title%></div>
+    <%}%>
+</script>
